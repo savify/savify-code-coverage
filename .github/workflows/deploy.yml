@@ -22,6 +22,7 @@ jobs:
                   repo: savify/savify
                   name: coverage-report
                   path: coverage-report
+                  search_artifacts: true
             
             - name: Setup Pages
               uses: actions/configure-pages@v2
