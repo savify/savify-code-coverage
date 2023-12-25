@@ -35,8 +35,10 @@ jobs:
             - name: Set Favicon
               run: |
                   mv favicon.ico ./coverage-report
+                  cd coverage-report
                   sed '7s#.*#<link rel="icon" type="image/x-icon" href="favicon.ico">#' index.html > temp.html
                   mv temp.html index.html
+                  cd ..
 
             - name: Setup Pages
               uses: actions/configure-pages@v2
