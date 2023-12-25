@@ -1,0 +1,35 @@
+name: Deploy Code Coverage Report
+
+on: workflow_dispatch
+
+permissions:
+    id-token: write
+    pages: write
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        
+        steps:
+            - name: Download Code Coverage Report
+              uses: dawidd6/action-download-artifact@v3
+              with:
+                  github_token: ${{secrets.GITHUB_TOKEN}}
+                  name: coverage-report
+                  path: coverage-report
+            
+            - name: Setup Pages
+              uses: actions/configure-pages@v2
+              
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v1
+              with:
+                  path: coverage-report
+        
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v1
