@@ -19,6 +19,7 @@ jobs:
               uses: dawidd6/action-download-artifact@v3
               with:
                   github_token: ${{secrets.GITHUB_TOKEN}}
+                  repo: savify/savify
                   name: coverage-report
                   path: coverage-report
             
