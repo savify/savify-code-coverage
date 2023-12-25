@@ -24,7 +24,7 @@ jobs:
             - name: Download Code Coverage Report
               uses: actions/download-artifact@v4
               with:
-                  github_token: ${{ secrets.GH_PAT }}
+                  github-token: ${{ secrets.GH_PAT }}
                   repository: savify/savify
                   run-id: ${{ github.event.inputs.coverage-run-id }}
                   name: coverage-report
