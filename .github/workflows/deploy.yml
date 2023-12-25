@@ -20,10 +20,12 @@ jobs:
               with:
                   github_token: ${{secrets.GITHUB_TOKEN}}
                   repo: savify/savify
-                  name: coverage-report
-                  path: coverage-report
+#                  name: coverage-report
+#                  path: coverage-report
                   search_artifacts: true
-            
+            - name: LS
+              run: ls -R
+
             - name: Setup Pages
               uses: actions/configure-pages@v2
               
