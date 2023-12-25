@@ -1,6 +1,12 @@
 name: Deploy Code Coverage Report
 
-on: workflow_dispatch
+on:
+    workflow_dispatch:
+        inputs:
+            coverage-run-id:
+                type: string
+                description: Workflow run ID with Code Coverage Report artifact
+                required: true
 
 permissions:
     id-token: write
@@ -16,15 +22,13 @@ jobs:
         
         steps:
             - name: Download Code Coverage Report
-              uses: dawidd6/action-download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
-                  github_token: ${{secrets.GITHUB_TOKEN}}
-                  repo: savify/savify
-#                  name: coverage-report
-#                  path: coverage-report
-                  search_artifacts: true
-            - name: LS
-              run: ls -R
+                  github_token: ${{ secrets.GH_PAT }}
+                  repository: savify/savify
+                  run-id: ${{ github.event.inputs.coverage-run-id }}
+                  name: coverage-report
+                  path: coverage-report
 
             - name: Setup Pages
               uses: actions/configure-pages@v2
